@@ -41,8 +41,20 @@ namespace ExampleBot
                 }
             }
 
-            if (myDynamite > 1) options.Add(Move.D);
-            if (myDynamite > 2) options.Add(Move.D);
+            if (rounds.Length > 400)
+            {
+                if (myDynamite > 1) options.Add(Move.D);
+                if (myDynamite > 2) options.Add(Move.D);
+                if (myDynamite > 3) options.Add(Move.D);
+            }
+            if (rounds.Length > 600)
+            {
+                if (myDynamite > 1) options.Add(Move.D);
+                if (myDynamite > 2) options.Add(Move.D);
+                if (myDynamite > 3) options.Add(Move.D);
+            }
+
+            if (options.Count == 0) options.Add(Move.D);
 
             var random = new Random();
             int index = random.Next(options.Count);
