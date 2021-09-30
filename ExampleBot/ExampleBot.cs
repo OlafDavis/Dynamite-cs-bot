@@ -12,16 +12,37 @@ namespace ExampleBot
             int myDynamite = 100;
             int opponentDynamite = 100;
             var rounds = gamestate.GetRounds();
+
             for (int i = 0; i < rounds.Length; i++)
             {
                 if (rounds[i].GetP1() == Move.D) myDynamite--;
                 if (rounds[i].GetP2() == Move.D) opponentDynamite--;
             }
 
-            var options = new List<Move> { Move.R, Move.S, Move.P };
+            int roundsToAverage = Math.Min(rounds.Length, 20);
+            var options = new List<Move>();
 
-            if (myDynamite > 0) options.Add(Move.D);
-            if (opponentDynamite > 0 && opponentDynamite < 100) options.Add(Move.W);
+            for (int i = rounds.Length - roundsToAverage; i < rounds.Length; i++)
+            {
+                switch (rounds[i].GetP2())
+                {
+                    case Move.P:
+                        options.Add(Move.S);
+                        break;
+                    case Move.R:
+                        options.Add(Move.P);
+                        break;
+                    case Move.S:
+                        options.Add(Move.R);
+                        break;
+                    case Move.D:
+                        if (opponentDynamite > 0) options.Add(Move.W);
+                        break;
+                }
+            }
+
+            if (myDynamite > 1) options.Add(Move.D);
+            if (myDynamite > 2) options.Add(Move.D);
 
             var random = new Random();
             int index = random.Next(options.Count);
