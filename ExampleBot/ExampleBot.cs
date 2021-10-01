@@ -7,6 +7,8 @@ namespace ExampleBot
 {
     public class ExampleBot : IBot
     {
+        private Random random = new Random();
+
         public Move MakeMove(Gamestate gamestate)
         {
             int myDynamite = 100;
@@ -56,7 +58,6 @@ namespace ExampleBot
 
             if (options.Count == 0) options.Add(Move.D);
 
-            var random = new Random();
             int index = random.Next(options.Count);
             return options[index];
         }
