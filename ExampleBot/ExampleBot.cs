@@ -1,4 +1,4 @@
-﻿using BotInterface.Bot;
+using BotInterface.Bot;
 using BotInterface.Game;
 using System;
 using System.Collections.Generic;
@@ -45,18 +45,25 @@ namespace ExampleBot
 
             if (rounds.Length > 400)
             {
-                if (myDynamite > 1) options.Add(Move.D);
-                if (myDynamite > 2) options.Add(Move.D);
-                if (myDynamite > 3) options.Add(Move.D);
+                if (myDynamite > 2)
+                {
+                    options.Add(Move.D);
+                }
             }
             if (rounds.Length > 600)
             {
-                if (myDynamite > 1) options.Add(Move.D);
-                if (myDynamite > 2) options.Add(Move.D);
-                if (myDynamite > 3) options.Add(Move.D);
+                if (myDynamite > 2)
+                {
+                    options.Add(Move.D);
+                }
             }
 
-            if (options.Count == 0) options.Add(Move.D);
+            if (options.Count == 0)
+            {
+                options.Add(Move.R);
+                options.Add(Move.P);
+                options.Add(Move.S);
+            }
 
             int index = random.Next(options.Count);
             return options[index];
