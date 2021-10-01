@@ -1,4 +1,4 @@
-using BotInterface.Bot;
+﻿using BotInterface.Bot;
 using BotInterface.Game;
 using System;
 using System.Collections.Generic;
@@ -37,9 +37,9 @@ namespace ExampleBot
                     case Move.S:
                         options.Add(Move.R);
                         break;
-                    case Move.D:
-                        if (opponentDynamite > 0) options.Add(Move.W);
-                        break;
+                    //case Move.D:
+                    //    if (opponentDynamite > 0) options.Add(Move.W);
+                    //    break;
                 }
             }
 
